@@ -48,6 +48,9 @@ Selain requirement minimal dari soal test, project ini juga sudah mendukung fitu
 ## Postman
 [Marketplace Pelindo API](https://github.com/sm888sm/backend-marketplace/blob/main/Marketplace%20Pelindo%20API.postman_collection.json)
 
+## Database Dump
+[Marketplace Database Dump](https://github.com/sm888sm/backend-marketplace/blob/main/dump-marketplace.sql)
+
 ## ERD
 ![ERD](https://raw.githubusercontent.com/sm888sm/backend-marketplace/refs/heads/main/erd.png)
 
