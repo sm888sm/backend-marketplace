@@ -47,8 +47,6 @@ Selain requirement minimal dari soal test, project ini juga sudah mendukung fitu
 - Belum ada unit test/coverage yang menyeluruh.
 - Belum ada rate limiting atau proteksi brute force pada endpoint login.
 - Dokumentasi Postman bisa lebih detail (misal: contoh response error untuk semua endpoint).
-- Belum ada ERD/diagram relasi database di README.
-- Belum ada fitur laporan penjualan atau dashboard admin.
 - Beberapa test yang belum menyeluruh menyebabkan kemungkinan bug muncul.
 
 ## Postman
