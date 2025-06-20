@@ -1,0 +1,2369 @@
+{
+	"info": {
+		"_postman_id": "5ca03c3a-1a05-487e-80fc-ef69c6197812",
+		"name": "Marketplace API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25943064"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"customer1\",\n  \"password\": \"password\",\n  \"email\": \"customer1@example.com\",\n  \"role\": \"customer\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[201] Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"merchant1\",\n  \"password\": \"password\",\n  \"email\": \"merchant1@example.com\",\n  \"role\": \"merchant\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 11:26:14 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "276"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Registrasi berhasil\",\n    \"data\": {\n        \"ID\": 3,\n        \"CreatedAt\": \"2025-06-20T19:26:13.796295172+08:00\",\n        \"UpdatedAt\": \"2025-06-20T19:26:13.796295172+08:00\",\n        \"DeletedAt\": null,\n        \"Username\": \"merchant1\",\n        \"Password\": \"password\",\n        \"Email\": \"merchant1@example.com\",\n        \"Role\": \"merchant\"\n    }\n}"
+						},
+						{
+							"name": "[400] Username Already Registered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"customer2\",\n  \"password\": \"password\",\n  \"email\": \"customer2@example.com\",\n  \"role\": \"customer\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:19:24 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Username sudah terdaftar\"\n}"
+						},
+						{
+							"name": "[400] Invalid Input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"customer3\",\n  \"password\": \"\",\n  \"email\": \"customer3@example.com\",\n  \"role\": \"customer\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:20:03 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Payload permintaan tidak valid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"merchant1\",\n  \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"merchant1\",\n  \"password\": \"password\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 11:30:06 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "472"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Login berhasil\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoibWVyY2hhbnQiLCJleHAiOjE3NTA1MDU0MDZ9.-xYqzbPmXXinhuRiCHF6ISo7S27LDmUmTYPPjiFVNK8\",\n        \"user\": {\n            \"ID\": 5,\n            \"CreatedAt\": \"2025-06-20T19:29:38.659313Z\",\n            \"UpdatedAt\": \"2025-06-20T19:29:38.659313Z\",\n            \"DeletedAt\": null,\n            \"Username\": \"merchant1\",\n            \"Password\": \"$2a$10$ZT1wUE7PFYYy.6yJwLUPEeHoSCownyq8KF./FalJrYHNsccBtp2Dy\",\n            \"Email\": \"merchant1@example.com\",\n            \"Role\": \"merchant\"\n        }\n    }\n}"
+						},
+						{
+							"name": "[401] Invalid Username/Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"merchant222\",\n  \"password\": \"passwort\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:22:31 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Login gagal: invalid credentials\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product (Public)",
+			"item": [
+				{
+					"name": "List Produk",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products?page=1&per_page=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products?page=1&per_page=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:23:41 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "976"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Daftar semua produk\",\n    \"data\": [\n        {\n            \"ID\": 4,\n            \"CreatedAt\": \"2025-06-20T20:03:38.640936Z\",\n            \"UpdatedAt\": \"2025-06-20T20:03:38.640936Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos Oversized\",\n            \"Description\": \"Kaos oversized berkualitas\",\n            \"Price\": 60000,\n            \"Stock\": 99,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        },\n        {\n            \"ID\": 3,\n            \"CreatedAt\": \"2025-06-20T20:00:00.65855Z\",\n            \"UpdatedAt\": \"2025-06-20T20:00:00.65855Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos Polos\",\n            \"Description\": \"Kaos polos berkualitas\",\n            \"Price\": 25000,\n            \"Stock\": 94,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        },\n        {\n            \"ID\": 5,\n            \"CreatedAt\": \"2025-06-20T20:12:02.020053Z\",\n            \"UpdatedAt\": \"2025-06-20T20:12:02.020053Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos Dalam\",\n            \"Description\": \"Kaos dalam berkualitas\",\n            \"Price\": 10000,\n            \"Stock\": 96,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total\": 3,\n        \"total_pages\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Detail Produk",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:24:24 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "332"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Detail produk\",\n    \"data\": {\n        \"ID\": 3,\n        \"CreatedAt\": \"2025-06-20T20:00:00.65855Z\",\n        \"UpdatedAt\": \"2025-06-20T20:00:00.65855Z\",\n        \"DeletedAt\": null,\n        \"MerchantID\": 5,\n        \"Name\": \"Kaos Polos\",\n        \"Description\": \"Kaos polos berkualitas\",\n        \"Price\": 25000,\n        \"Stock\": 94,\n        \"category_id\": 1,\n        \"Category\": {\n            \"id\": 0,\n            \"name\": \"\",\n            \"Products\": null\n        },\n        \"Images\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Gambar Produk",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/:id/images",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id",
+								"images"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Explore/Search Produk",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/products/explore?search=kaos&min_price=10000&max_price=50000&category_id=1&sort=price_asc&page=1&per_page=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"explore"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "kaos"
+								},
+								{
+									"key": "min_price",
+									"value": "10000"
+								},
+								{
+									"key": "max_price",
+									"value": "50000"
+								},
+								{
+									"key": "category_id",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "price_asc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/products/explore?search=Dalam&min_price=10000&max_price=50000&category_id=1&sort=price_asc&page=1&per_page=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"products",
+										"explore"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "Dalam"
+										},
+										{
+											"key": "min_price",
+											"value": "10000"
+										},
+										{
+											"key": "max_price",
+											"value": "50000"
+										},
+										{
+											"key": "category_id",
+											"value": "1"
+										},
+										{
+											"key": "sort",
+											"value": "price_asc"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:25:40 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "403"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Hasil pencarian produk\",\n    \"data\": [\n        {\n            \"ID\": 5,\n            \"CreatedAt\": \"2025-06-20T20:12:02.020053Z\",\n            \"UpdatedAt\": \"2025-06-20T20:12:02.020053Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos Dalam\",\n            \"Description\": \"Kaos dalam berkualitas\",\n            \"Price\": 10000,\n            \"Stock\": 96,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total\": 1,\n        \"total_pages\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product (Merchant)",
+			"item": [
+				{
+					"name": "Create Produk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Kaos Polos\",\n  \"description\": \"Kaos polos berkualitas\",\n  \"price\": 25000,\n  \"stock\": 100,\n  \"category_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/merchant/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"merchant",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Kaos V-Neck\",\n  \"description\": \"Kaos V-Nech berkualitas\",\n  \"price\": 88888,\n  \"stock\": 100,\n  \"category_id\": 1\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:27:28 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "362"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Produk berhasil dibuat\",\n    \"data\": {\n        \"ID\": 6,\n        \"CreatedAt\": \"2025-06-20T20:27:28.827639247+08:00\",\n        \"UpdatedAt\": \"2025-06-20T20:27:28.827639247+08:00\",\n        \"DeletedAt\": null,\n        \"MerchantID\": 5,\n        \"Name\": \"Kaos V-Neck\",\n        \"Description\": \"Kaos V-Nech berkualitas\",\n        \"Price\": 88888,\n        \"Stock\": 100,\n        \"category_id\": 1,\n        \"Category\": {\n            \"id\": 0,\n            \"name\": \"\",\n            \"Products\": null\n        },\n        \"Images\": null\n    }\n}"
+						},
+						{
+							"name": "[400] Kategori Tidak Ditemukan",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Kaos V-Neck\",\n  \"description\": \"Kaos V-Nech berkualitas\",\n  \"price\": 88888,\n  \"stock\": 100,\n  \"category_id\": 2\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:28:01 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Kategori tidak ditemukan\"\n}"
+						},
+						{
+							"name": "[400] Invalid Harga/Stok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Kaos V-Neck\",\n  \"description\": \"Kaos V-Nech berkualitas\",\n  \"price\": 0,\n  \"stock\": 0,\n  \"category_id\": 1\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:28:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Invalid request payload\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Produk",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Kaos Polos Update\",\n  \"description\": \"Kaos polos update\",\n  \"price\": 30000,\n  \"stock\": 80,\n  \"category_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/merchant/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"merchant",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Sukses",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Kaos V-Neck Update\",\n  \"description\": \"Kaos V-Neck berkualitas update\",\n  \"price\": 88000,\n  \"stock\": 88,\n  \"category_id\": 1\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products",
+										":id"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "6",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:30:16 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "362"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Produk berhasil diupdate\",\n    \"data\": {\n        \"ID\": 6,\n        \"CreatedAt\": \"0001-01-01T00:00:00Z\",\n        \"UpdatedAt\": \"2025-06-20T20:30:16.725604074+08:00\",\n        \"DeletedAt\": null,\n        \"MerchantID\": 5,\n        \"Name\": \"Kaos V-Neck Update\",\n        \"Description\": \"Kaos V-Neck berkualitas update\",\n        \"Price\": 88000,\n        \"Stock\": 88,\n        \"category_id\": 0,\n        \"Category\": {\n            \"id\": 0,\n            \"name\": \"\",\n            \"Products\": null\n        },\n        \"Images\": null\n    }\n}"
+						},
+						{
+							"name": "[400] Invalid Harga/Stok",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Kaos V-Neck Update\",\n  \"description\": \"Kaos V-Neck berkualitas update\",\n  \"price\": 0,\n  \"stock\": 0,\n  \"category_id\": 1\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products",
+										":id"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "6",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:31:13 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Invalid request payload\"\n}"
+						},
+						{
+							"name": "[400] Kategori Tidak Ditemukan",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Kaos V-Neck Update\",\n  \"description\": \"Kaos V-Neck berkualitas update\",\n  \"price\": 88000,\n  \"stock\": 88,\n  \"category_id\": 1\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products",
+										":id"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "6",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:35:57 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Kategori tidak ditemukan\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Produk",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/merchant/products/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"merchant",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:40:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Produk berhasil dihapus\"\n}"
+						},
+						{
+							"name": "[404] Produk Tidak Ditemukan",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:40:41 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"product not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Produk Sendiri",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/merchant/products/my-products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"merchant",
+								"products",
+								"my-products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] - Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/merchant/products/my-products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"products",
+										"my-products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:41:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1280"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Daftar produk merchant\",\n    \"data\": [\n        {\n            \"ID\": 4,\n            \"CreatedAt\": \"2025-06-20T20:03:38.640936Z\",\n            \"UpdatedAt\": \"2025-06-20T20:03:38.640936Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos Oversized\",\n            \"Description\": \"Kaos oversized berkualitas\",\n            \"Price\": 60000,\n            \"Stock\": 99,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        },\n        {\n            \"ID\": 3,\n            \"CreatedAt\": \"2025-06-20T20:00:00.65855Z\",\n            \"UpdatedAt\": \"2025-06-20T20:00:00.65855Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos Polos\",\n            \"Description\": \"Kaos polos berkualitas\",\n            \"Price\": 25000,\n            \"Stock\": 94,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        },\n        {\n            \"ID\": 5,\n            \"CreatedAt\": \"2025-06-20T20:12:02.020053Z\",\n            \"UpdatedAt\": \"2025-06-20T20:12:02.020053Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos Dalam\",\n            \"Description\": \"Kaos dalam berkualitas\",\n            \"Price\": 10000,\n            \"Stock\": 96,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        },\n        {\n            \"ID\": 6,\n            \"CreatedAt\": \"2025-06-20T20:27:28.827639Z\",\n            \"UpdatedAt\": \"2025-06-20T20:32:47.398145Z\",\n            \"DeletedAt\": null,\n            \"MerchantID\": 5,\n            \"Name\": \"Kaos V-Neck Update\",\n            \"Description\": \"Kaos V-Neck berkualitas update\",\n            \"Price\": 88000,\n            \"Stock\": 88,\n            \"category_id\": 1,\n            \"Category\": {\n                \"id\": 0,\n                \"name\": \"\",\n                \"Products\": null\n            },\n            \"Images\": null\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total\": 4,\n        \"total_pages\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload Gambar Produk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/merchant/products/:id/images",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"merchant",
+								"products",
+								":id",
+								"images"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Buat Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"items\": [\n    {\"product_id\": 1, \"quantity\": 2}\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Order < 15.000 - Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"items\": [\n    {\"product_id\": 5, \"quantity\": 1}\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:43:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "484"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Order berhasil dibuat\",\n    \"data\": {\n        \"ID\": 8,\n        \"CreatedAt\": \"2025-06-20T20:43:09.318102228+08:00\",\n        \"UpdatedAt\": \"2025-06-20T20:43:09.318102228+08:00\",\n        \"DeletedAt\": null,\n        \"CustomerID\": 7,\n        \"TotalAmount\": 10000,\n        \"DiscountAmount\": 0,\n        \"ShippingFee\": 5000,\n        \"FinalAmount\": 15000,\n        \"Status\": \"pending\",\n        \"Items\": [\n            {\n                \"ID\": 7,\n                \"CreatedAt\": \"2025-06-20T20:43:09.321045883+08:00\",\n                \"UpdatedAt\": \"2025-06-20T20:43:09.321045883+08:00\",\n                \"DeletedAt\": null,\n                \"OrderID\": 8,\n                \"ProductID\": 5,\n                \"Quantity\": 1,\n                \"Price\": 10000\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "[200] Order > 15.000 - Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"items\": [\n    {\"product_id\": 3, \"quantity\": 1}\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:44:14 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "481"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Order berhasil dibuat\",\n    \"data\": {\n        \"ID\": 9,\n        \"CreatedAt\": \"2025-06-20T20:44:14.934094331+08:00\",\n        \"UpdatedAt\": \"2025-06-20T20:44:14.934094331+08:00\",\n        \"DeletedAt\": null,\n        \"CustomerID\": 7,\n        \"TotalAmount\": 25000,\n        \"DiscountAmount\": 0,\n        \"ShippingFee\": 0,\n        \"FinalAmount\": 25000,\n        \"Status\": \"pending\",\n        \"Items\": [\n            {\n                \"ID\": 8,\n                \"CreatedAt\": \"2025-06-20T20:44:14.934806236+08:00\",\n                \"UpdatedAt\": \"2025-06-20T20:44:14.934806236+08:00\",\n                \"DeletedAt\": null,\n                \"OrderID\": 9,\n                \"ProductID\": 3,\n                \"Quantity\": 1,\n                \"Price\": 25000\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "[200] Order > 50.000 - Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"items\": [\n    {\"product_id\": 6, \"quantity\": 1}\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:45:03 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "484"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Order berhasil dibuat\",\n    \"data\": {\n        \"ID\": 10,\n        \"CreatedAt\": \"2025-06-20T20:45:03.740352498+08:00\",\n        \"UpdatedAt\": \"2025-06-20T20:45:03.740352498+08:00\",\n        \"DeletedAt\": null,\n        \"CustomerID\": 7,\n        \"TotalAmount\": 88000,\n        \"DiscountAmount\": 8800,\n        \"ShippingFee\": 0,\n        \"FinalAmount\": 79200,\n        \"Status\": \"pending\",\n        \"Items\": [\n            {\n                \"ID\": 9,\n                \"CreatedAt\": \"2025-06-20T20:45:03.74162894+08:00\",\n                \"UpdatedAt\": \"2025-06-20T20:45:03.74162894+08:00\",\n                \"DeletedAt\": null,\n                \"OrderID\": 10,\n                \"ProductID\": 6,\n                \"Quantity\": 1,\n                \"Price\": 88000\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "[400] Produk Tidak Ditemukan",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"items\": [\n    {\"product_id\": 10, \"quantity\": 1}\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:45:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"produk dengan ID 10 tidak ditemukan\"\n}"
+						},
+						{
+							"name": "[400] Jumlah Produk Kosong",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"items\": [\n    {\"product_id\": 6, \"quantity\": 0}\n  ]\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/orders",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:45:53 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Format request tidak valid atau items kosong\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Order Sendiri",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders/my-orders?page=1&per_page=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"my-orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/orders/my-orders?page=1&per_page=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"my-orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:46:24 GMT"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Daftar order customer\",\n    \"data\": [\n        {\n            \"ID\": 2,\n            \"CreatedAt\": \"2025-06-20T20:07:57.398107Z\",\n            \"UpdatedAt\": \"2025-06-20T20:07:57.398107Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 25000,\n            \"DiscountAmount\": 0,\n            \"ShippingFee\": 0,\n            \"FinalAmount\": 25000,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 1,\n                    \"CreatedAt\": \"2025-06-20T20:07:57.398793Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:07:57.398793Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 2,\n                    \"ProductID\": 3,\n                    \"Quantity\": 1,\n                    \"Price\": 25000\n                }\n            ]\n        },\n        {\n            \"ID\": 3,\n            \"CreatedAt\": \"2025-06-20T20:13:07.622443Z\",\n            \"UpdatedAt\": \"2025-06-20T20:13:07.622443Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 10000,\n            \"DiscountAmount\": 0,\n            \"ShippingFee\": 5000,\n            \"FinalAmount\": 15000,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 2,\n                    \"CreatedAt\": \"2025-06-20T20:13:07.623158Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:13:07.623158Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 3,\n                    \"ProductID\": 5,\n                    \"Quantity\": 1,\n                    \"Price\": 10000\n                }\n            ]\n        },\n        {\n            \"ID\": 4,\n            \"CreatedAt\": \"2025-06-20T20:13:17.139692Z\",\n            \"UpdatedAt\": \"2025-06-20T20:13:17.139692Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 60000,\n            \"DiscountAmount\": 6000,\n            \"ShippingFee\": 0,\n            \"FinalAmount\": 54000,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 3,\n                    \"CreatedAt\": \"2025-06-20T20:13:17.140465Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:13:17.140465Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 4,\n                    \"ProductID\": 4,\n                    \"Quantity\": 1,\n                    \"Price\": 60000\n                }\n            ]\n        },\n        {\n            \"ID\": 5,\n            \"CreatedAt\": \"2025-06-20T20:16:16.628111Z\",\n            \"UpdatedAt\": \"2025-06-20T20:16:16.628111Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 50000,\n            \"DiscountAmount\": 0,\n            \"ShippingFee\": 0,\n            \"FinalAmount\": 50000,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 4,\n                    \"CreatedAt\": \"2025-06-20T20:16:16.62893Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:16:16.62893Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 5,\n                    \"ProductID\": 3,\n                    \"Quantity\": 2,\n                    \"Price\": 25000\n                }\n            ]\n        },\n        {\n            \"ID\": 6,\n            \"CreatedAt\": \"2025-06-20T20:16:50.056029Z\",\n            \"UpdatedAt\": \"2025-06-20T20:16:50.056029Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 75000,\n            \"DiscountAmount\": 7500,\n            \"ShippingFee\": 0,\n            \"FinalAmount\": 67500,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 5,\n                    \"CreatedAt\": \"2025-06-20T20:16:50.058786Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:16:50.058786Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 6,\n                    \"ProductID\": 3,\n                    \"Quantity\": 3,\n                    \"Price\": 25000\n                }\n            ]\n        },\n        {\n            \"ID\": 8,\n            \"CreatedAt\": \"2025-06-20T20:43:09.318102Z\",\n            \"UpdatedAt\": \"2025-06-20T20:43:09.318102Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 10000,\n            \"DiscountAmount\": 0,\n            \"ShippingFee\": 5000,\n            \"FinalAmount\": 15000,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 7,\n                    \"CreatedAt\": \"2025-06-20T20:43:09.321045Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:43:09.321045Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 8,\n                    \"ProductID\": 5,\n                    \"Quantity\": 1,\n                    \"Price\": 10000\n                }\n            ]\n        },\n        {\n            \"ID\": 9,\n            \"CreatedAt\": \"2025-06-20T20:44:14.934094Z\",\n            \"UpdatedAt\": \"2025-06-20T20:44:14.934094Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 25000,\n            \"DiscountAmount\": 0,\n            \"ShippingFee\": 0,\n            \"FinalAmount\": 25000,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 8,\n                    \"CreatedAt\": \"2025-06-20T20:44:14.934806Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:44:14.934806Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 9,\n                    \"ProductID\": 3,\n                    \"Quantity\": 1,\n                    \"Price\": 25000\n                }\n            ]\n        },\n        {\n            \"ID\": 10,\n            \"CreatedAt\": \"2025-06-20T20:45:03.740352Z\",\n            \"UpdatedAt\": \"2025-06-20T20:45:03.740352Z\",\n            \"DeletedAt\": null,\n            \"CustomerID\": 7,\n            \"TotalAmount\": 88000,\n            \"DiscountAmount\": 8800,\n            \"ShippingFee\": 0,\n            \"FinalAmount\": 79200,\n            \"Status\": \"pending\",\n            \"Items\": [\n                {\n                    \"ID\": 9,\n                    \"CreatedAt\": \"2025-06-20T20:45:03.741628Z\",\n                    \"UpdatedAt\": \"2025-06-20T20:45:03.741628Z\",\n                    \"DeletedAt\": null,\n                    \"OrderID\": 10,\n                    \"ProductID\": 6,\n                    \"Quantity\": 1,\n                    \"Price\": 88000\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total\": 8,\n        \"total_pages\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Detail Order Sendiri",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/orders/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/orders/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:46:54 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "440"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Detail order\",\n    \"data\": {\n        \"ID\": 2,\n        \"CreatedAt\": \"2025-06-20T20:07:57.398107Z\",\n        \"UpdatedAt\": \"2025-06-20T20:07:57.398107Z\",\n        \"DeletedAt\": null,\n        \"CustomerID\": 7,\n        \"TotalAmount\": 25000,\n        \"DiscountAmount\": 0,\n        \"ShippingFee\": 0,\n        \"FinalAmount\": 25000,\n        \"Status\": \"pending\",\n        \"Items\": [\n            {\n                \"ID\": 1,\n                \"CreatedAt\": \"2025-06-20T20:07:57.398793Z\",\n                \"UpdatedAt\": \"2025-06-20T20:07:57.398793Z\",\n                \"DeletedAt\": null,\n                \"OrderID\": 2,\n                \"ProductID\": 3,\n                \"Quantity\": 1,\n                \"Price\": 25000\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Detail Order untuk Merchant",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/merchant/orders/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"merchant",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[403] Bukan User Merchant",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/merchant/orders/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:47:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "77"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Hanya merchant yang bisa melihat detail order ini\"\n}"
+						},
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/merchant/orders/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"merchant",
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:48:40 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "455"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Detail order untuk merchant\",\n    \"data\": {\n        \"ID\": 2,\n        \"CreatedAt\": \"2025-06-20T20:07:57.398107Z\",\n        \"UpdatedAt\": \"2025-06-20T20:07:57.398107Z\",\n        \"DeletedAt\": null,\n        \"CustomerID\": 7,\n        \"TotalAmount\": 25000,\n        \"DiscountAmount\": 0,\n        \"ShippingFee\": 0,\n        \"FinalAmount\": 25000,\n        \"Status\": \"pending\",\n        \"Items\": [\n            {\n                \"ID\": 1,\n                \"CreatedAt\": \"2025-06-20T20:07:57.398793Z\",\n                \"UpdatedAt\": \"2025-06-20T20:07:57.398793Z\",\n                \"DeletedAt\": null,\n                \"OrderID\": 2,\n                \"ProductID\": 3,\n                \"Quantity\": 1,\n                \"Price\": 25000\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Pembeli Produk Merchant",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/merchant/products/buyers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"merchant",
+								"products",
+								"buyers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Buat Kategori",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Fashion\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] - Sukses",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Elektronik\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:49:36 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Kategori berhasil dibuat\",\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Elektronik\",\n        \"Products\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Kategori",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] - Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:49:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Daftar kategori produk\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Fashion\",\n            \"Products\": null\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Elektronik\",\n            \"Products\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Kategori",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Fashion Update\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/categories/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] - Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Elektronik Update\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/categories/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:50:30 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Kategori berhasil diubah\",\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Elektronik Update\",\n        \"Products\": null\n    }\n}"
+						},
+						{
+							"name": "[400] Nama Tidak Valid",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/categories/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:50:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Format request tidak valid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Hapus Kategori",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/categories/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "[200] Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/categories/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:51:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"Message\": \"Kategori berhasil dihapus\"\n}"
+						},
+						{
+							"name": "[404] Kategori Tidak Ditemukan",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/categories/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 20 Jun 2025 12:54:04 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": \"Kategori tidak ditemukan\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User (Admin)",
+			"item": [
+				{
+					"name": "List User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users?page=1&per_page=10&role=merchant",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "role",
+									"value": "merchant"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "127.0.0.1:8080",
+			"type": "string"
+		}
+	]
+}
