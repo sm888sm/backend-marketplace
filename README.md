@@ -45,6 +45,12 @@ Selain requirement minimal dari soal test, project ini juga sudah mendukung fitu
 - Belum ada fitur laporan penjualan atau dashboard admin.
 - Beberapa test yang belum menyeluruh menyebabkan kemungkinan bug muncul.
 
+## Postman
+[Marketplace Pelindo API](https://github.com/sm888sm/backend-marketplace/blob/main/Marketplace%20Pelindo%20API.postman_collection.json)
+
+## ERD
+![ERD](https://raw.githubusercontent.com/sm888sm/backend-marketplace/refs/heads/main/erd.png)
+
 ## Struktur Project
 
 ```
