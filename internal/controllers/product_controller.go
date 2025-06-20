@@ -13,17 +13,25 @@ import (
 type ProductController struct {
 	productService  services.ProductService
 	categoryService services.CategoryService
+	authService     *services.AuthService
 }
 
-func NewProductController(productService services.ProductService, categoryService services.CategoryService) *ProductController {
+func NewProductController(productService services.ProductService, categoryService services.CategoryService, authService *services.AuthService) *ProductController {
 	return &ProductController{
 		productService:  productService,
 		categoryService: categoryService,
+		authService:     authService,
 	}
 }
 
 func (c *ProductController) CreateProduct(ctx *gin.Context) {
 	merchantID := ctx.MustGet("userID").(uint)
+
+	user, err := c.authService.GetUserByID(merchantID)
+	if err != nil || user == nil || user.Role != "merchant" {
+		utils.APIError(ctx, http.StatusBadRequest, "Merchant tidak valid")
+		return
+	}
 
 	var req models.ProductRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
