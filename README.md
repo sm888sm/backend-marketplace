@@ -12,6 +12,12 @@ Backend API untuk aplikasi marketplace, dibangun dengan Go, Gin, GORM, dan Postg
 - **Pencarian & filter produk**
 - **Soft delete** (`deleted_at`) di semua tabel utama
 
+**Catatan:**
+
+- Produk dengan nilai transaksi **lebih dari Rp15.000** atau **lebih dari Rp50.000** akan mendapatkan **gratis ongkos kirim** atau **diskon**.
+- Transaksi dengan nilai **tepat sebesar Rp15.000** **tidak akan mendapatkan** gratis ongkos kirim.
+- Transaksi dengan nilai **tepat sebesar Rp50.000** **tidak akan mendapatkan** diskon 10%.
+
 ## Fitur Tambahan
 
 Selain requirement minimal dari soal test, project ini juga sudah mendukung fitur-fitur berikut:
